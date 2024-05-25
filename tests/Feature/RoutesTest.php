@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class RoutesTest extends TestCase
@@ -78,7 +79,6 @@ class RoutesTest extends TestCase
     public function test_task_api_crud_is_working()
     {
         $user = User::factory()->create();
-
         $response = $this->actingAs($user)->get('/api/v1/tasks');
         $response->assertOk();
 
@@ -120,5 +120,4 @@ class RoutesTest extends TestCase
         $response = $this->actingAs($admin)->get('/admin/stats');
         $response->assertViewIs('admin.stats');
     }
-
 }

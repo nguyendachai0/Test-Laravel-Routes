@@ -37,8 +37,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        Task::create($request->validate(['name' => 'required']));
-
+        $task = Task::create($request->validate(['name' => 'required']));
         return redirect()->route('tasks.index');
     }
 
@@ -73,8 +72,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        $task->update($request->validate(['name' => 'required']));
-
+        $task  = $task->update($request->validate(['name' => 'required']));
         return redirect()->route('tasks.index');
     }
 
